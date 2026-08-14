@@ -1,0 +1,22 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# banco de dados (gerado localmente por init-db/seed)
+database/*.db
+database/*.db-journal
+
+# Node
+node_modules/
+
+# artefatos gerados
+frontend/rss.xml
+
+# ambiente
+.env
+
+# editores / SO
+.DS_Store
+.vscode/
+*.swp

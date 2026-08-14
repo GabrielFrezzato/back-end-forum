@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QUADRO — um quadro de avisos digital</title>
+  <link rel="stylesheet" href="css/estilo.css">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header class="cabecalho">
+    <div class="cabecalho__interno">
+      <a href="index.html" class="logo" style="color:inherit;text-decoration:none;">
+        QUADRO<span class="logo__cursor">_▌</span>
+      </a>
+      <nav class="nav-auth" id="nav-auth"></nav>
+    </div>
+  </header>
+
+  <div class="barra-status">
+    <div class="barra-status__interno" id="barra-status">carregando estatísticas...</div>
+  </div>
+
+  <pre class="boot" id="boot"></pre>
+
+  <main class="envelope" id="app" style="display:none;">
+    <div class="grade-principal">
+      <aside class="painel-canais">
+        <div class="painel-canais__titulo">canais</div>
+        <ul class="lista-canais" id="lista-canais"></ul>
+      </aside>
+
+      <section>
+        <div class="cabecalho-lista">
+          <div>
+            <h1 id="titulo-lista">todos os tópicos</h1>
+            <p id="descricao-lista">as transmissões mais recentes da comunidade</p>
+          </div>
+          <a class="botao" href="novo-topico.html">[ + novo tópico ]</a>
+        </div>
+        <div class="lista-topicos" id="lista-topicos"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="rodape">
+    <span>QUADRO — fórum modelo, feito para ser adaptado</span>
+    <span>sinal recebido em <span class="mono" id="ano"></span></span>
+  </footer>
+
+  <script>document.getElementById('ano').textContent = new Date().getFullYear();</script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

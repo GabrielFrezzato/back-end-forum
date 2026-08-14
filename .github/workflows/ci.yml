@@ -1,0 +1,73 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  python:
+    name: backend (Python)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: instalar dependências
+        run: pip install -r backend/requirements.txt flake8
+      - name: lint
+        run: flake8 backend --max-line-length=100 --extend-ignore=E203
+      - name: inicializar e popular o banco (smoke test)
+        run: |
+          flask --app backend/app.py init-db
+          flask --app backend/app.py seed
+      - name: subir servidor e checar API
+        run: |
+          QUADRO_SECRET_KEY=ci flask --app backend/app.py run --port 5000 &
+          sleep 2
+          curl -sf http://127.0.0.1:5000/api/canais > /dev/null
+          curl -sf http://127.0.0.1:5000/ > /dev/null
+
+  frontend:
+    name: frontend (JS)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: checar sintaxe dos módulos JS
+        run: |
+          for f in frontend/js/*.js; do
+            node --check "$f"
+          done
+
+  node-scripts:
+    name: scripts (Node)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: checar sintaxe
+        run: node --check scripts/gerar-feed.js
+
+  php:
+    name: painel (PHP)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          extensions: pdo_sqlite
+      - name: lint
+        run: php -l php/estatisticas.php
+
+  sql:
+    name: schema (SQL)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: aplicar schema.sql num banco limpo
+        run: python3 -c "import sqlite3; sqlite3.connect(':memory:').executescript(open('database/schema.sql').read())"

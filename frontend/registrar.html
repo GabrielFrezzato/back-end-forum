@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>registrar — QUADRO</title>
+  <link rel="stylesheet" href="css/estilo.css">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header class="cabecalho">
+    <div class="cabecalho__interno">
+      <a href="index.html" class="logo" style="color:inherit;text-decoration:none;">
+        QUADRO<span class="logo__cursor">_▌</span>
+      </a>
+      <nav class="nav-auth" id="nav-auth"></nav>
+    </div>
+  </header>
+
+  <main class="envelope">
+    <div class="formulario-painel">
+      <h1>registrar</h1>
+      <p class="subtitulo">crie uma conta para transmitir no quadro</p>
+
+      <div class="mensagem-erro" id="erro-form" style="display:none;"></div>
+
+      <form id="form-registrar">
+        <div class="campo">
+          <label for="campo-usuario">usuário</label>
+          <input type="text" id="campo-usuario" required minlength="3" autocomplete="username">
+        </div>
+        <div class="campo">
+          <label for="campo-email">e-mail</label>
+          <input type="email" id="campo-email" required autocomplete="email">
+        </div>
+        <div class="campo">
+          <label for="campo-senha">senha</label>
+          <input type="password" id="campo-senha" required minlength="6" autocomplete="new-password">
+        </div>
+        <button class="botao" type="submit">[ criar conta ]</button>
+      </form>
+
+      <p class="rodape-formulario">
+        já tem conta? <a href="entrar.html">entre</a>.
+      </p>
+    </div>
+  </main>
+
+  <script type="module" src="js/auth.js"></script>
+</body>
+</html>

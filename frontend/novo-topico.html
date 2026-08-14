@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>novo tópico — QUADRO</title>
+  <link rel="stylesheet" href="css/estilo.css">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header class="cabecalho">
+    <div class="cabecalho__interno">
+      <a href="index.html" class="logo" style="color:inherit;text-decoration:none;">
+        QUADRO<span class="logo__cursor">_▌</span>
+      </a>
+      <nav class="nav-auth" id="nav-auth"></nav>
+    </div>
+  </header>
+
+  <main class="envelope" id="conteudo" style="max-width: 620px;">
+    <div class="formulario-painel" style="margin-top: 20px;">
+      <h1>novo tópico</h1>
+      <p class="subtitulo">abra uma nova transmissão para a comunidade</p>
+
+      <div class="mensagem-erro" id="erro-form" style="display:none;"></div>
+
+      <form id="form-topico">
+        <div class="campo">
+          <label for="campo-canal">canal</label>
+          <select id="campo-canal" required></select>
+        </div>
+        <div class="campo">
+          <label for="campo-titulo">título</label>
+          <input type="text" id="campo-titulo" required minlength="4" placeholder="do que se trata?">
+        </div>
+        <div class="campo">
+          <label for="campo-corpo">mensagem</label>
+          <textarea id="campo-corpo" required placeholder="escreva a primeira mensagem do tópico..."></textarea>
+        </div>
+        <button class="botao" type="submit">[ publicar tópico ]</button>
+      </form>
+    </div>
+  </main>
+
+  <script type="module" src="js/novo-topico.js"></script>
+</body>
+</html>

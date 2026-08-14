@@ -1,0 +1,37 @@
+# QUADRO — orquestra o backend Flask e o painel PHP lado a lado,
+# ambos apontando para o mesmo banco SQLite via volume compartilhado.
+#
+# Uso:
+#   docker compose -f docker/docker-compose.yml up --build
+#
+# Fórum:          http://localhost:5000
+# Painel PHP:      http://localhost:8001/estatisticas.php
+
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - QUADRO_SECRET_KEY=troque-esta-chave-em-producao
+    volumes:
+      - quadro-db:/app/database
+
+  painel-php:
+    image: php:8.3-cli
+    working_dir: /app
+    # pequena espera para o serviço "app" inicializar o schema no volume
+    # compartilhado antes do PHP tentar ler o banco
+    command: sh -c "sleep 3 && php -S 0.0.0.0:8001 -t php"
+    ports:
+      - "8001:8001"
+    volumes:
+      - ../php:/app/php:ro
+      - quadro-db:/app/database:ro
+    depends_on:
+      - app
+
+volumes:
+  quadro-db:

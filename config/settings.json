@@ -1,0 +1,8 @@
+{
+  "nome_site": "QUADRO",
+  "descricao_site": "um quadro de avisos digital",
+  "topicos_por_pagina": 20,
+  "posts_por_pagina": 30,
+  "tamanho_min_senha": 6,
+  "banco_de_dados": "database/quadro.db"
+}
