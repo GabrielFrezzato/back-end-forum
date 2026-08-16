@@ -134,25 +134,6 @@ há tokens para gerenciar manualmente.
 | GET    | `/api/auth/eu`                 | usuário logado atual                  |
 | GET    | `/api/estatisticas`            | contagem de usuários/tópicos/posts   |
 
-## publicando no GitHub
-
-```bash
-cd quadro-forum
-git init
-git add .
-git commit -m "primeiro commit: template QUADRO"
-git branch -M main
-git remote add origin https://github.com/SEU-USUARIO/SEU-REPOSITORIO.git
-git push -u origin main
-```
-
-O `.gitignore` já exclui o banco de dados gerado localmente
-(`database/*.db`) e o ambiente virtual (`.venv/`) — cada pessoa que
-clonar o repositório roda `./scripts/setup.sh` e gera os próprios
-dados de exemplo. O workflow em `.github/workflows/ci.yml` já testa
-automaticamente o backend Python, o frontend JS, o script Node, o
-painel PHP e o schema SQL a cada push.
-
 ## customizando
 
 - **visual**: tudo passa pelas variáveis CSS no topo de
