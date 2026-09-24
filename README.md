@@ -71,8 +71,8 @@ quadro-forum/
 ### opção rápida
 
 ```bash
-git clone https://github.com/GabrielFrezzato/system-restaurant
-cd back-end-forum
+git clone 
+cd 
 ./scripts/setup.sh
 source .venv/bin/activate
 flask --app backend/app.py run --debug
